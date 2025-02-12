@@ -31,6 +31,6 @@ const EventSchema = new Schema({
     organisor: {type: Schema.Types.ObjectId, ref: 'User'}
 })
 
-const Event = models.event || model('Events', EventSchema)
+const Event = models.Event || model('Event', EventSchema)
 
 export default Event

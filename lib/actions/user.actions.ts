@@ -10,19 +10,27 @@ import { handleError } from '@/lib/utils'
 
 import { CreateUserParams, UpdateUserParams } from '@/types'
 
+
 export async function createUser(user: CreateUserParams) {
   try {
-    await connectToDatabase()
+    console.log('Connecting to database...');
+    await connectToDatabase();
+    console.log('Database connected');
 
-    const newUser = await User.create(user)
-    return JSON.parse(JSON.stringify(newUser))
+    console.log('Creating user with data:', user);
+    const newUser = await User.create(user);
+
+    console.log('User created successfully:', newUser);
+    return JSON.parse(JSON.stringify(newUser));
   } catch (error) {
-    handleError(error)
+    console.error('Error in createUser:', error);
+    handleError(error);
   }
 }
 
 export async function getUserById(userId: string) {
   try {
+    
     await connectToDatabase()
 
     const user = await User.findById(userId)
